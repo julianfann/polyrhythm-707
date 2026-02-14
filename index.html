@@ -94,7 +94,6 @@
     pointer-events: none; z-index: 101; border-radius: 12px; mix-blend-mode: overlay;
   }
 
-  /* === TOP PANEL === */
   .top-panel {
     background: linear-gradient(180deg, var(--cream) 0%, var(--panel) 60%, var(--panel-dark) 100%);
     padding: 16px 24px 14px;
@@ -130,7 +129,6 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.15); opacity: 0.8; letter-spacing: 1px;
   }
 
-  /* LCD */
   .display-strip { display: flex; align-items: center; gap: 16px; margin-top: 4px; flex-wrap: wrap; }
 
   .lcd-panel {
@@ -173,7 +171,6 @@
   }
   .led-text { font-size: 6px; text-transform: uppercase; letter-spacing: 1px; color: var(--label-faded); }
 
-  /* === CONTROLS === */
   .controls-strip {
     background: linear-gradient(180deg, var(--chassis-light) 0%, var(--chassis) 100%);
     padding: 10px 24px;
@@ -209,6 +206,25 @@
   }
   .hw-btn-metal:active { transform: translateY(1px); box-shadow: 0 1px 0 #2a2620, inset 0 1px 3px rgba(0,0,0,0.2); }
 
+  .hw-btn-midi {
+    background: linear-gradient(180deg, #3a5a8a 0%, #2a4a72 50%, #1a3a5a 100%);
+    box-shadow: 0 2px 0 #0a1a2a, 0 3px 5px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+    color: #c0d8f0;
+    position: relative;
+    padding-left: 28px;
+  }
+  .hw-btn-midi:active { transform: translateY(1px); box-shadow: 0 1px 0 #0a1a2a, inset 0 1px 3px rgba(0,0,0,0.2); }
+  .hw-btn-midi::before {
+    content: '\266A';
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    font-size: 14px; opacity: 0.7;
+  }
+  .hw-btn-midi.exported {
+    background: linear-gradient(180deg, #1acc5a 0%, #15aa48 50%, #108838 100%);
+    color: #0a2a0a;
+    box-shadow: 0 2px 0 #084a18, 0 3px 5px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), 0 0 8px rgba(26,204,90,0.3);
+  }
+
   .rotary-group {
     display: flex; align-items: center; gap: 6px;
     background: rgba(0,0,0,0.2); border-radius: 4px; padding: 5px 10px;
@@ -226,10 +242,7 @@
   }
   .rotary-select:focus { outline: 1px solid var(--amber); }
 
-  /* Styled dropdown for pattern select */
-  .rotary-select option {
-    background: #2a2622; color: var(--cream); padding: 4px;
-  }
+  .rotary-select option { background: #2a2622; color: var(--cream); padding: 4px; }
   .rotary-select optgroup {
     background: #1a1816; color: var(--amber); font-style: normal;
     font-family: 'Aldrich', sans-serif; font-size: 11px;
@@ -254,7 +267,6 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* === GRID === */
   .grid-area { padding: 16px 24px 20px; }
 
   .step-leds { display: flex; padding-left: 116px; margin-bottom: 3px; min-width: fit-content; }
@@ -276,12 +288,11 @@
   .step-num.active { color: var(--red-led); text-shadow: 0 0 6px rgba(255,42,26,0.5); }
   .step-num.downbeat-marker { color: var(--amber); }
   .step-num.downbeat-marker::after {
-    content: '▼'; position: absolute; bottom: -6px; left: 50%;
+    content: '\25BC'; position: absolute; bottom: -6px; left: 50%;
     transform: translateX(-50%); font-size: 5px; color: var(--amber); opacity: 0.5;
   }
 
   .track-row { display: flex; align-items: center; margin-bottom: 3px; min-width: fit-content; }
-
   .track-label { width: 116px; min-width: 116px; display: flex; align-items: center; gap: 6px; padding-right: 8px; }
 
   .track-name-plate {
@@ -307,7 +318,6 @@
     box-shadow: 0 0 6px rgba(255,42,26,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
   }
 
-  /* Pads */
   .pad {
     width: 44px; min-width: 44px; height: 38px; margin: 0 1.5px; border-radius: 3px;
     cursor: pointer; transition: all 0.08s; position: relative;
@@ -353,7 +363,6 @@
   .track-cowbell .pad.on::before { background: radial-gradient(ellipse at center, rgba(170,204,26,0.3), transparent 70%); }
   .track-cowbell .pad.on::after { background: var(--pad-on-cow); box-shadow: 0 0 4px var(--pad-on-cow); }
 
-  /* === BOTTOM === */
   .bottom-strip {
     background: linear-gradient(180deg, var(--chassis-dark), #222018);
     padding: 10px 24px 14px;
@@ -381,18 +390,23 @@
   .grid-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 2px; }
   .grid-scroll::-webkit-scrollbar-thumb { background: #4a4238; border-radius: 2px; }
 
-  /* Kit indicator dots */
-  .kit-dots {
-    display: flex; gap: 3px; align-items: center; margin-top: 2px;
+  .kit-dots { display: flex; gap: 3px; align-items: center; margin-top: 2px; }
+  .kit-dot { width: 4px; height: 4px; border-radius: 50%; background: #2a3a2a; transition: all 0.2s; }
+  .kit-dot.active { background: #1af0ff; box-shadow: 0 0 4px rgba(26,240,255,0.6); }
+
+  .midi-toast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: linear-gradient(180deg, #2a4a3a, #1a3a2a);
+    border: 1px solid #3a6a4a; border-radius: 6px;
+    padding: 10px 20px;
+    font-family: 'Share Tech Mono', monospace; font-size: 12px;
+    color: var(--green-led); text-shadow: 0 0 6px rgba(26,255,92,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 15px rgba(26,255,92,0.1);
+    z-index: 1000; opacity: 0; transition: all 0.3s ease;
+    pointer-events: none; white-space: nowrap;
   }
-  .kit-dot {
-    width: 4px; height: 4px; border-radius: 50%;
-    background: #2a3a2a; transition: all 0.2s;
-  }
-  .kit-dot.active {
-    background: #1af0ff;
-    box-shadow: 0 0 4px rgba(26,240,255,0.6);
-  }
+  .midi-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   @media (max-width: 768px) {
     .machine { border-radius: 8px; }
@@ -411,7 +425,6 @@
   <div class="screw screw-tl"></div>
   <div class="screw screw-tr"></div>
 
-  <!-- TOP PANEL -->
   <div class="top-panel">
     <div class="sticker">SN: 707-4892 — 1983</div>
     <div class="brand-row">
@@ -466,7 +479,6 @@
     </div>
   </div>
 
-  <!-- CONTROLS -->
   <div class="controls-strip">
     <button class="hw-btn hw-btn-play" id="playBtn" onclick="togglePlay()">▶ PLAY</button>
 
@@ -559,9 +571,9 @@
 
     <button class="hw-btn hw-btn-metal" onclick="clearAll()">Clear</button>
     <button class="hw-btn hw-btn-metal" onclick="randomize()">Random</button>
+    <button class="hw-btn hw-btn-midi" id="midiBtn" onclick="exportMIDI()">MIDI</button>
   </div>
 
-  <!-- GRID -->
   <div class="grid-area">
     <div class="grid-scroll">
       <div class="step-leds" id="stepLeds"></div>
@@ -570,12 +582,12 @@
     </div>
   </div>
 
-  <!-- BOTTOM -->
   <div class="bottom-strip">
     <div class="footer-keys">
       <span><kbd>SPACE</kbd> Play/Stop</span>
       <span><kbd>Click</kbd> Toggle pad</span>
       <span><kbd>1-8</kbd> Switch kits</span>
+      <span><kbd>M</kbd> Export MIDI</span>
     </div>
   </div>
 
@@ -583,13 +595,13 @@
   <div class="screw screw-br" style="position:absolute;"></div>
 </div>
 <div class="machine-feet"><div class="foot"></div><div class="foot"></div><div class="foot"></div><div class="foot"></div></div>
+<div class="midi-toast" id="midiToast"></div>
 
 <script>
 // ===== Audio Engine =====
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 // ===== DRUM KITS =====
-// Each kit defines synth parameters for all 8 voices
 const drumKits = {
   '808': {
     name: '808',
@@ -847,7 +859,6 @@ function getDownbeats(sig) {
   return positions;
 }
 
-// ===== Kit Switching =====
 function changeKit() {
   const kitId = document.getElementById('kitSelect').value;
   currentKit = drumKits[kitId];
@@ -867,7 +878,6 @@ function updateKitDots() {
   });
 }
 
-// ===== Scheduler =====
 function getStepDuration(stepIndex) {
   const baseDur = (state.noteValue === 4) ? 60 / state.bpm
     : (state.noteValue === 16) ? 60 / state.bpm / 4
@@ -912,7 +922,6 @@ function updatePlayhead(step) {
   beatLedTimeout = setTimeout(() => beatLed.classList.remove('active'), 80);
 }
 
-// ===== UI =====
 function togglePlay() {
   if (audioCtx.state === 'suspended') audioCtx.resume();
   state.playing = !state.playing;
@@ -1022,36 +1031,27 @@ function randomize() {
 // ===== 24 PRESETS =====
 const P = (arr) => arr.map(v => !!v);
 const presets = {
-  // 5/4
   prog5:     { sig:'5/4', bpm:110, swing:0, p:{ kick:P([1,0,0,1,0]), snare:P([0,0,1,0,0]), hihat:P([1,1,1,1,1]), ohh:P([0,0,0,0,0]), clap:P([0,0,0,0,1]), tom:P([0,0,0,0,0]), rim:P([0,1,0,0,0]), cowbell:P([0,0,0,0,0]) }},
   take5:     { sig:'5/4', bpm:105, swing:30, p:{ kick:P([1,0,0,0,0]), snare:P([0,0,0,1,0]), hihat:P([1,0,1,0,1]), ohh:P([0,0,0,0,0]), clap:P([0,0,0,0,0]), tom:P([0,0,0,0,0]), rim:P([0,1,0,0,1]), cowbell:P([0,0,0,0,0]) }},
   ambient5:  { sig:'5/4', bpm:80, swing:15, p:{ kick:P([1,0,0,0,0]), snare:P([0,0,0,0,0]), hihat:P([0,0,1,0,0]), ohh:P([0,0,0,0,1]), clap:P([0,0,0,0,0]), tom:P([0,0,0,1,0]), rim:P([0,1,0,0,0]), cowbell:P([0,0,0,0,0]) }},
-  // 5/8
   minimal5:  { sig:'5/8', bpm:150, swing:0, p:{ kick:P([1,0,0,1,0]), snare:P([0,0,1,0,0]), hihat:P([1,1,1,1,1]), ohh:P([0,0,0,0,0]), clap:P([0,0,0,0,0]), tom:P([0,0,0,0,0]), rim:P([0,0,0,0,1]), cowbell:P([0,0,0,0,0]) }},
   punk5:     { sig:'5/8', bpm:180, swing:0, p:{ kick:P([1,0,1,0,0]), snare:P([0,0,0,1,0]), hihat:P([1,1,1,1,1]), ohh:P([0,0,0,0,0]), clap:P([0,0,0,0,1]), tom:P([0,0,0,0,0]), rim:P([0,0,0,0,0]), cowbell:P([0,0,0,0,0]) }},
-  // 7/8
   balkan7:   { sig:'7/8', bpm:160, swing:0, p:{ kick:P([1,0,0,1,0,0,0]), snare:P([0,0,0,0,0,1,0]), hihat:P([1,0,1,1,0,1,0]), ohh:P([0,0,0,0,0,0,1]), clap:P([0,0,0,0,0,0,0]), tom:P([0,0,0,0,0,0,0]), rim:P([0,1,0,0,1,0,0]), cowbell:P([0,0,0,0,0,0,0]) }},
   prog7:     { sig:'7/8', bpm:130, swing:0, p:{ kick:P([1,0,0,0,1,0,0]), snare:P([0,0,1,0,0,0,1]), hihat:P([1,0,1,0,1,0,1]), ohh:P([0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0]), tom:P([0,0,0,1,0,0,0]), rim:P([0,0,0,0,0,1,0]), cowbell:P([0,0,0,0,0,0,0]) }},
   dub7:      { sig:'7/8', bpm:90, swing:40, p:{ kick:P([1,0,0,0,0,1,0]), snare:P([0,0,0,1,0,0,0]), hihat:P([1,0,1,0,1,0,1]), ohh:P([0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0]), tom:P([0,0,0,0,0,0,0]), rim:P([0,1,0,0,0,0,1]), cowbell:P([0,0,0,0,0,0,0]) }},
   jazz7:     { sig:'7/8', bpm:140, swing:25, p:{ kick:P([1,0,0,1,0,0,0]), snare:P([0,0,0,0,0,0,0]), hihat:P([1,0,1,1,0,1,0]), ohh:P([0,0,0,0,0,0,1]), clap:P([0,0,0,0,0,0,0]), tom:P([0,0,0,0,0,0,0]), rim:P([0,1,0,0,1,0,0]), cowbell:P([1,0,0,0,0,0,0]) }},
-  // 7/4
   money7:    { sig:'7/4', bpm:125, swing:0, p:{ kick:P([1,0,0,0,1,0,0]), snare:P([0,0,0,1,0,0,0]), hihat:P([1,1,1,1,1,1,1]), ohh:P([0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,1]), tom:P([0,0,0,0,0,0,0]), rim:P([0,0,0,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0]) }},
   tribal7:   { sig:'7/4', bpm:100, swing:10, p:{ kick:P([1,0,0,1,0,0,0]), snare:P([0,0,0,0,0,0,0]), hihat:P([0,0,0,0,0,0,0]), ohh:P([0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,1,0]), tom:P([0,1,0,0,1,0,1]), rim:P([0,0,1,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0]) }},
-  // 9/8
   afro9:     { sig:'9/8', bpm:130, swing:20, p:{ kick:P([1,0,0,1,0,0,1,0,0]), snare:P([0,0,0,0,0,1,0,0,0]), hihat:P([1,0,1,1,0,1,1,0,1]), ohh:P([0,0,0,0,0,0,0,0,0]), clap:P([0,0,1,0,0,0,0,0,1]), tom:P([0,0,0,0,0,0,0,1,0]), rim:P([0,1,0,0,1,0,0,0,0]), cowbell:P([1,0,0,1,0,0,1,0,0]) }},
   turkish9:  { sig:'9/8', bpm:145, swing:0, p:{ kick:P([1,0,0,1,0,0,0,1,0]), snare:P([0,0,0,0,0,0,0,0,0]), hihat:P([1,0,1,0,1,0,1,0,1]), ohh:P([0,0,0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0,0,0]), tom:P([0,0,0,0,0,1,0,0,0]), rim:P([0,1,0,0,1,0,0,0,1]), cowbell:P([0,0,0,0,0,0,0,0,0]) }},
   prog9:     { sig:'9/8', bpm:95, swing:10, p:{ kick:P([1,0,0,0,0,1,0,0,0]), snare:P([0,0,0,0,1,0,0,0,0]), hihat:P([1,0,1,0,0,1,0,1,0]), ohh:P([0,0,0,0,0,0,0,0,1]), clap:P([0,0,0,0,0,0,0,0,0]), tom:P([0,0,0,1,0,0,0,0,0]), rim:P([0,0,0,0,0,0,1,0,0]), cowbell:P([0,0,0,0,0,0,0,0,0]) }},
-  // 10/8
   samba10:   { sig:'10/8', bpm:120, swing:15, p:{ kick:P([1,0,0,1,0,0,1,0,0,0]), snare:P([0,0,0,0,0,0,0,0,1,0]), hihat:P([1,0,1,1,0,1,1,0,1,0]), ohh:P([0,0,0,0,0,0,0,0,0,1]), clap:P([0,0,1,0,0,1,0,0,0,0]), tom:P([0,0,0,0,0,0,0,1,0,0]), rim:P([0,1,0,0,1,0,0,0,0,0]), cowbell:P([1,0,0,0,0,1,0,0,0,0]) }},
   breaks10:  { sig:'10/8', bpm:140, swing:0, p:{ kick:P([1,0,0,0,0,1,0,0,0,0]), snare:P([0,0,1,0,0,0,0,1,0,0]), hihat:P([1,1,1,1,0,1,1,1,1,0]), ohh:P([0,0,0,0,1,0,0,0,0,1]), clap:P([0,0,0,0,0,0,0,0,1,0]), tom:P([0,0,0,0,0,0,0,0,0,0]), rim:P([0,0,0,1,0,0,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0,0,0,0]) }},
-  // 11/8
   math11:    { sig:'11/8', bpm:140, swing:0, p:{ kick:P([1,0,0,1,0,0,1,0,0,0,0]), snare:P([0,0,0,0,0,1,0,0,0,1,0]), hihat:P([1,0,1,1,0,1,1,0,1,1,0]), ohh:P([0,0,0,0,0,0,0,0,0,0,1]), clap:P([0,0,0,0,0,0,0,0,1,0,0]), tom:P([0,0,0,0,1,0,0,0,0,0,0]), rim:P([0,1,0,0,0,0,0,1,0,0,0]), cowbell:P([0,0,0,0,0,0,0,0,0,0,0]) }},
   gamelan11: { sig:'11/8', bpm:110, swing:0, p:{ kick:P([1,0,0,0,0,0,1,0,0,0,0]), snare:P([0,0,0,0,0,0,0,0,0,0,0]), hihat:P([0,0,1,0,0,0,0,0,1,0,0]), ohh:P([0,0,0,0,0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0,0,0,0,0]), tom:P([0,0,0,1,0,0,0,0,0,1,0]), rim:P([0,1,0,0,0,1,0,1,0,0,1]), cowbell:P([1,0,0,0,0,0,1,0,0,0,0]) }},
   funk11:    { sig:'11/8', bpm:125, swing:30, p:{ kick:P([1,0,0,1,0,0,0,1,0,0,0]), snare:P([0,0,0,0,0,1,0,0,0,0,1]), hihat:P([1,0,1,0,1,0,1,0,1,0,1]), ohh:P([0,0,0,0,0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0,0,0,1,0]), tom:P([0,0,0,0,0,0,0,0,0,0,0]), rim:P([0,0,0,0,0,0,0,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0,0,0,0,0]) }},
-  // 13/8
   fusion13:  { sig:'13/8', bpm:120, swing:10, p:{ kick:P([1,0,0,1,0,0,1,0,0,0,1,0,0]), snare:P([0,0,0,0,0,1,0,0,0,0,0,0,1]), hihat:P([1,0,1,1,0,1,1,0,1,0,1,0,1]), ohh:P([0,0,0,0,0,0,0,0,0,1,0,0,0]), clap:P([0,0,0,0,0,0,0,0,0,0,0,1,0]), tom:P([0,0,0,0,0,0,0,1,0,0,0,0,0]), rim:P([0,1,0,0,1,0,0,0,0,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0,0,1,0,0,0,0]) }},
   ritual13:  { sig:'13/8', bpm:90, swing:0, p:{ kick:P([1,0,0,0,0,0,1,0,0,0,0,0,0]), snare:P([0,0,0,0,0,0,0,0,0,0,0,0,0]), hihat:P([0,0,0,0,0,0,0,0,0,0,0,0,0]), ohh:P([0,0,0,0,0,0,0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0,0,0,0,0,0,0]), tom:P([0,0,1,0,0,0,0,0,1,0,0,1,0]), rim:P([0,0,0,0,1,0,0,0,0,0,1,0,0]), cowbell:P([1,0,0,0,0,0,1,0,0,0,0,0,0]) }},
-  // 15/16
   polyrhythm15: { sig:'15/16', bpm:135, swing:0, p:{ kick:P([1,0,0,0,1,0,0,0,1,0,0,0,0,0,0]), snare:P([0,0,0,0,0,0,0,1,0,0,0,0,0,0,1]), hihat:P([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), ohh:P([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), clap:P([0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]), tom:P([0,0,0,1,0,0,0,0,0,0,0,0,0,1,0]), rim:P([0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0,0,0,1,0,0,0,0,0]) }},
   chaos15:   { sig:'15/16', bpm:155, swing:0, p:{ kick:P([1,0,0,1,0,0,0,0,1,0,0,0,1,0,0]), snare:P([0,0,0,0,0,0,1,0,0,0,0,1,0,0,0]), hihat:P([1,1,0,1,1,0,1,1,0,1,1,0,1,1,0]), ohh:P([0,0,1,0,0,1,0,0,1,0,0,0,0,0,1]), clap:P([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), tom:P([0,0,0,0,1,0,0,0,0,0,0,0,0,1,0]), rim:P([0,0,0,0,0,0,0,1,0,0,1,0,0,0,0]), cowbell:P([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]) }},
 };
@@ -1078,12 +1078,235 @@ function loadPreset(name) {
   buildGrid();
 }
 
+// ===== MIDI EXPORT ENGINE =====
+// Pure JS Standard MIDI File (SMF) generator — no dependencies
+const MidiExport = {
+  // General MIDI Percussion Map (Channel 10)
+  drumMap: {
+    kick:    36, // Bass Drum 1
+    snare:   38, // Acoustic Snare
+    hihat:   42, // Closed Hi-Hat
+    ohh:     46, // Open Hi-Hat
+    clap:    39, // Hand Clap
+    tom:     45, // Low Tom
+    rim:     37, // Side Stick
+    cowbell: 56, // Cowbell
+  },
+
+  // Velocity mapping per instrument for natural dynamics
+  velocityMap: {
+    kick: 100, snare: 95, hihat: 80, ohh: 75,
+    clap: 90, tom: 85, rim: 70, cowbell: 75,
+  },
+
+  // Write a variable-length quantity (VLQ)
+  writeVLQ(value) {
+    if (value < 0) value = 0;
+    const bytes = [];
+    bytes.unshift(value & 0x7F);
+    value >>= 7;
+    while (value > 0) {
+      bytes.unshift((value & 0x7F) | 0x80);
+      value >>= 7;
+    }
+    return bytes;
+  },
+
+  stringToBytes(str) {
+    return Array.from(str).map(c => c.charCodeAt(0));
+  },
+
+  write16(val) {
+    return [(val >> 8) & 0xFF, val & 0xFF];
+  },
+
+  write32(val) {
+    return [(val >> 24) & 0xFF, (val >> 16) & 0xFF, (val >> 8) & 0xFF, val & 0xFF];
+  },
+
+  // Build a complete Standard MIDI File from pattern state
+  buildMidiFile(patternState, trackDefs, numRepeats) {
+    numRepeats = numRepeats || 4;
+    const bpm = patternState.bpm;
+    const beats = patternState.beats;
+    const noteValue = patternState.noteValue;
+    const swing = patternState.swing;
+    const ticksPerQuarter = 480;
+
+    // Calculate ticks per step based on note value
+    var ticksPerStep;
+    if (noteValue === 4) ticksPerStep = ticksPerQuarter;
+    else if (noteValue === 16) ticksPerStep = ticksPerQuarter / 4;
+    else ticksPerStep = ticksPerQuarter / 2; // 8th notes
+
+    // Build track data
+    const trackEvents = [];
+
+    // Track name meta event
+    const trackName = 'PR-707 ' + beats + '/' + noteValue + ' @' + bpm + 'BPM';
+    const nameBytes = this.stringToBytes(trackName);
+    trackEvents.push.apply(trackEvents, this.writeVLQ(0));
+    trackEvents.push(0xFF, 0x03);
+    trackEvents.push.apply(trackEvents, this.writeVLQ(nameBytes.length));
+    trackEvents.push.apply(trackEvents, nameBytes);
+
+    // Tempo meta event (microseconds per quarter note)
+    const usPerQN = Math.round(60000000 / bpm);
+    trackEvents.push.apply(trackEvents, this.writeVLQ(0));
+    trackEvents.push(0xFF, 0x51, 0x03,
+      (usPerQN >> 16) & 0xFF,
+      (usPerQN >> 8) & 0xFF,
+      usPerQN & 0xFF
+    );
+
+    // Time signature meta event
+    var denomPow = 0, nv = noteValue;
+    while (nv > 1) { nv >>= 1; denomPow++; }
+    trackEvents.push.apply(trackEvents, this.writeVLQ(0));
+    trackEvents.push(0xFF, 0x58, 0x04, beats, denomPow, 24, 8);
+
+    // Info text event
+    const kitName = document.getElementById('kitSelect').value;
+    const infoText = 'PR-707 Odd Rhythm Composer | Kit: ' + kitName + ' | Swing: ' + swing + '%';
+    const infoBytes = this.stringToBytes(infoText);
+    trackEvents.push.apply(trackEvents, this.writeVLQ(0));
+    trackEvents.push(0xFF, 0x01);
+    trackEvents.push.apply(trackEvents, this.writeVLQ(infoBytes.length));
+    trackEvents.push.apply(trackEvents, infoBytes);
+
+    // Collect all note events with absolute tick positions
+    const noteEvents = [];
+    const noteLength = Math.round(ticksPerStep * 0.8); // 80% gate
+
+    for (var rep = 0; rep < numRepeats; rep++) {
+      var currentTick = rep * beats * ticksPerStep;
+      for (var step = 0; step < beats; step++) {
+        var stepTick = currentTick;
+        // Apply swing: push odd steps forward
+        if (swing > 0 && step % 2 === 1) {
+          stepTick += Math.round(ticksPerStep * (swing / 100) * 0.5);
+        }
+        for (var ti = 0; ti < trackDefs.length; ti++) {
+          var track = trackDefs[ti];
+          if (patternState.pattern[track.id][step] && !patternState.muted[track.id]) {
+            var note = this.drumMap[track.id];
+            var vel = this.velocityMap[track.id];
+            noteEvents.push({ tick: stepTick, type: 'on', note: note, vel: vel });
+            noteEvents.push({ tick: stepTick + noteLength, type: 'off', note: note, vel: 0 });
+          }
+        }
+        currentTick += ticksPerStep;
+      }
+    }
+
+    // Sort: by tick, note-offs before note-ons at same tick
+    noteEvents.sort(function(a, b) {
+      if (a.tick !== b.tick) return a.tick - b.tick;
+      if (a.type === 'off' && b.type === 'on') return -1;
+      if (a.type === 'on' && b.type === 'off') return 1;
+      return a.note - b.note;
+    });
+
+    // Convert to delta-time MIDI events
+    var lastTick = 0;
+    for (var ei = 0; ei < noteEvents.length; ei++) {
+      var evt = noteEvents[ei];
+      var delta = evt.tick - lastTick;
+      lastTick = evt.tick;
+      trackEvents.push.apply(trackEvents, this.writeVLQ(delta));
+      if (evt.type === 'on') {
+        trackEvents.push(0x99, evt.note, evt.vel); // Channel 10 note on
+      } else {
+        trackEvents.push(0x89, evt.note, 0); // Channel 10 note off
+      }
+    }
+
+    // End of track
+    trackEvents.push.apply(trackEvents, this.writeVLQ(0));
+    trackEvents.push(0xFF, 0x2F, 0x00);
+
+    // Assemble full MIDI file
+    var midiFile = [];
+    // MThd header
+    midiFile.push.apply(midiFile, this.stringToBytes('MThd'));
+    midiFile.push.apply(midiFile, this.write32(6));
+    midiFile.push.apply(midiFile, this.write16(0));    // Format 0
+    midiFile.push.apply(midiFile, this.write16(1));    // 1 track
+    midiFile.push.apply(midiFile, this.write16(ticksPerQuarter));
+    // MTrk
+    midiFile.push.apply(midiFile, this.stringToBytes('MTrk'));
+    midiFile.push.apply(midiFile, this.write32(trackEvents.length));
+    midiFile.push.apply(midiFile, trackEvents);
+
+    return new Uint8Array(midiFile);
+  },
+
+  // Trigger browser download
+  download(patternState, trackDefs) {
+    var data = this.buildMidiFile(patternState, trackDefs);
+    var blob = new Blob([data], { type: 'audio/midi' });
+    var url = URL.createObjectURL(blob);
+
+    var presetSelect = document.getElementById('presetSelect');
+    var presetName = presetSelect.value || 'custom';
+    var sig = patternState.beats + '-' + patternState.noteValue;
+    var filename = 'PR707_' + sig + '_' + presetName + '_' + patternState.bpm + 'bpm.mid';
+
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    return filename;
+  }
+};
+
+// Export function wired to UI
+function exportMIDI() {
+  // Check if pattern is empty
+  var hasNotes = tracks.some(function(t) {
+    return state.pattern[t.id].some(function(v, i) {
+      return v && i < state.beats && !state.muted[t.id];
+    });
+  });
+  if (!hasNotes) {
+    showMidiToast('Pattern is empty \u2014 add some hits first!', true);
+    return;
+  }
+
+  var filename = MidiExport.download(state, tracks);
+
+  // Visual feedback on button
+  var btn = document.getElementById('midiBtn');
+  btn.classList.add('exported');
+  btn.textContent = '\u2713 SAVED';
+  setTimeout(function() {
+    btn.classList.remove('exported');
+    btn.textContent = 'MIDI';
+  }, 1500);
+
+  showMidiToast('Exported: ' + filename);
+}
+
+function showMidiToast(message, isError) {
+  var toast = document.getElementById('midiToast');
+  toast.textContent = message;
+  toast.style.color = isError ? 'var(--red-led)' : 'var(--green-led)';
+  toast.style.textShadow = isError
+    ? '0 0 6px rgba(255,42,26,0.4)'
+    : '0 0 6px rgba(26,255,92,0.4)';
+  toast.style.borderColor = isError ? '#6a3a3a' : '#3a6a4a';
+  toast.classList.add('visible');
+  setTimeout(function() { toast.classList.remove('visible'); }, 2500);
+}
+
 // Keyboard shortcuts
 document.addEventListener('keydown', e => {
   if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') {
     e.preventDefault(); togglePlay();
   }
-  // Number keys 1-8 for kit switching
   const num = parseInt(e.key);
   if (num >= 1 && num <= 8 && e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') {
     const kitIds = Object.keys(drumKits);
@@ -1091,6 +1314,9 @@ document.addEventListener('keydown', e => {
       document.getElementById('kitSelect').value = kitIds[num - 1];
       changeKit();
     }
+  }
+  if ((e.key === 'm' || e.key === 'M') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') {
+    exportMIDI();
   }
 });
 
