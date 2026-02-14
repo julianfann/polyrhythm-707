@@ -2,7 +2,7 @@
 
 A skeuomorphic web-based drum machine built for composing in odd time signatures.
 
-**[▶ Live Demo](https://<your-username>.github.io/polyrhythm-707/)**
+**[▶ Live Demo](https://julianfann.github.io/polyrhythm-707/)**
 
 ![PR-707](https://img.shields.io/badge/time_signatures-5%2F4_to_15%2F16-ff6b3d) ![Kits](https://img.shields.io/badge/drum_kits-8-1aff5c) ![Patterns](https://img.shields.io/badge/presets-24-ffaa00)
 
